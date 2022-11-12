@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Movies Test</title>
+        <script src="movies.js"></script>
+        <style>
+            form {
+                width: 600px;
+                border: solid #fff 1px;
+                margin: auto;
+                padding: 10px;
+                background-color: rgb(83, 83, 90);
+            }
+
+            form .genres {
+                margin: 5px;
+                padding: 5px;
+                background-color: rgb(65, 65, 70);
+                border: #fff 1px solid;
+            }
+
+            hr {
+                border: #fff;
+            }
+
+            body {
+                color: #fff;
+                background-color: rgb(35, 34, 41);
+                font-family: Arial, Helvetica, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <form name="CreateMovie">
+            <h2>Create movie</h2>
+            <br />
+            <input type="hidden" />
+            <br />
+            <input name="name" type="text" placeholder="name" value="Titanic" />
+            <br />
+            <textarea
+                placeholder="synopsis"
+                name="synopsis"
+                id=""
+                cols="30"
+                rows="10"
+            >
+Una aristócrata de diecisiete años se enamora de un amable pero pobre artista a bordo del lujoso y desafortunado R.M.S. Titanic.</textarea
+            >
+            <br />
+            <label for="date">Fecha</label>
+            <input type="date" name="releaseDate" />
+            <div class="genres">
+                <h3>Generos</h3>
+                <label for="romance">romance</label>
+                <input
+                    value="Romance"
+                    class="checkbox"
+                    type="checkbox"
+                    id="romance"
+                />
+                <br />
+                <label for="horror">Horror</label>
+                <input
+                    value="Horror"
+                    class="checkbox"
+                    type="checkbox"
+                    id="horror"
+                />
+            </div>
+            <br />
+            <input placeholder="rating" name="rating" type="number" value="8" />
+            <br />
+            <input
+                name="director"
+                type="text"
+                placeholder="director"
+                value="James Cameron"
+            />
+            <br />
+            <input
+                name="mainActor"
+                placeholder="mainactor"
+                type="text"
+                value="Leonardo Di Caprio"
+            />
+            <br />
+            <input
+                name="duration"
+                placeholder="duration"
+                type="number"
+                value="269"
+            />
+            <br />
+            <button type="button" onclick="createMovie()">Enviar</button>
+        </form>
+        <br />
+        <hr />
+        <br />
+        <div>
+            <h2>Respuesta: <span id="response"></span></h2>
+        </div>
+    </body>
+</html>
