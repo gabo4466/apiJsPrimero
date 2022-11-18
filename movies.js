@@ -22,7 +22,7 @@ function makeRequest(method, url, callback, body = {}) {
  */
 function createMovie() {
     let body = createMovieFormToJson(document.CreateMovie);
-    makeRequest('POST', 'http://localhost:3000/api/movies', responseCreateMovie, body);
+    makeRequest('POST', 'http://localhost:3000/api/movies', (request) => responseCreateMovie(request, 'Se ha creado con exito la pelicula'), body);
 }
 
 /**
@@ -54,18 +54,15 @@ function createMovieFormToJson(form = new HTMLElement('form')) {
  * Lambda que controla la respuesta de la peticion para crear pelicula del servidor.
  * @param {XMLHttpRequest} request Objeto de la peticion que se esta realizando.
  */
-const responseCreateMovie = (request) => {
+const responseCreateMovie = (request, msg) => {
     let message;
     if (request.readyState == 4) {
         let response = JSON.parse(request.responseText);
         if (request.status >= 200 || request.status < 300) {
-            message = 'Se ha creado con exito la pelicula';
+            message = msg;
         } else {
-            if (response.errorCode && response.errorCode === '23505') {
-                message = 'Error - Ya existe una pelicula con ese nombre';
-            } else {
-                message = 'Error - Algo ha ocurrido mal'
-            }
+            message = 'Error - Algo ha ocurrido mal'
+
         }
         document.getElementById('response').innerHTML = message;
     }
@@ -120,7 +117,35 @@ function createTrMovie(movie) {
     });
     td.appendChild(button);
     tr.appendChild(td);
+    button = document.createElement('button');
+    button.innerHTML = 'Actualizar'
+    button.addEventListener('click', (event) => {
+        loadUpdateForm(movie);
+    })
+    td = document.createElement('td');
+    td.appendChild(button);
+    tr.appendChild(td);
     return tr;
+}
+
+const loadUpdateForm = (movie) => {
+    let updateForm = document.getElementById('updateMovieForm');
+    updateForm.style.display = "block";
+    document.UpdateMovie.name.value = movie['name'];
+    document.UpdateMovie.synopsis.value = movie['synopsis'];
+    document.UpdateMovie.releaseDate.value = movie['releaseDate'];
+    document.UpdateMovie.rating.value = movie['rating'];
+    document.UpdateMovie.director.value = movie['director'];
+    document.UpdateMovie.mainActor.value = movie['mainActor'];
+    document.UpdateMovie.duration.value = movie['duration'];
+    document.getElementById('buttonUpdate').addEventListener('click', (event) => {
+        updateMovie(movie['id'])
+    })
+}
+
+function updateMovie(id) {
+    let body = createMovieFormToJson(document.UpdateMovie);
+    makeRequest('PATCH', 'http://localhost:3000/api/movies/' + id, (request) => responseCreateMovie(request, 'Se ha actualizado la pelicula con exito'), body);
 }
 
 /**
@@ -144,5 +169,8 @@ const responseDeleteMovie = (request) => {
         }
     }
 }
+
+
+
 
 

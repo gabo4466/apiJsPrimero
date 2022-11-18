@@ -139,7 +139,74 @@ Una aristócrata de diecisiete años se enamora de un amable pero pobre artista 
                 <td>Actor principal</td>
                 <td>Duracion (m)</td>
                 <td>Ultima actualizacion</td>
+                <td>Borrar</td>
+                <td>Actualizar</td>
             </tr>
         </table>
+        <br />
+        <br />
+        <hr />
+        <h2>Actualizar pelicula</h2>
+        <br />
+        <br />
+        <form id="updateMovieForm" style="display: none" name="UpdateMovie">
+            <br />
+            <input type="hidden" />
+            <br />
+            <input name="name" type="text" placeholder="name" value="" />
+            <br />
+            <textarea
+                placeholder="synopsis"
+                name="synopsis"
+                cols="30"
+                rows="10"
+            ></textarea>
+            <br />
+            <label for="date">Fecha</label>
+            <input type="date" name="releaseDate" />
+            <div class="genres">
+                <h3>Generos</h3>
+                <label for="romance">romance</label>
+                <input
+                    value="Romance"
+                    class="checkbox"
+                    type="checkbox"
+                    id="romance"
+                />
+                <br />
+                <label for="horror">Horror</label>
+                <input
+                    value="Horror"
+                    class="checkbox"
+                    type="checkbox"
+                    id="horror"
+                />
+            </div>
+            <br />
+            <input placeholder="rating" name="rating" type="number" value="" />
+            <br />
+            <input
+                name="director"
+                type="text"
+                placeholder="director"
+                value=""
+            />
+            <br />
+            <input
+                name="mainActor"
+                placeholder="mainactor"
+                type="text"
+                value=""
+            />
+            <br />
+            <input
+                name="duration"
+                placeholder="duration"
+                type="number"
+                value=""
+            />
+            <br />
+            <button type="button" id="buttonUpdate">Enviar</button>
+        </form>
     </body>
 </html>
